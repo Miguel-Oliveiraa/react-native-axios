@@ -8,14 +8,14 @@ import {
   TouchableOpacity,
   Image,
 } from "react-native";
-import api from "./src/services/axios";
+import api from "../services/axios";
 
-export default function App() {
+export default function Profile() {
   const [users, setUser] = useState();
 
   useEffect(() => {
     api
-      .get("/users")
+      .get("/users/1/albums")
       .then((response) => setUser(response.data))
       .catch((err) => {
         console.error("ops! ocorreu um erro" + err);
@@ -24,23 +24,24 @@ export default function App() {
 
   const renderItem = ({ item }) => (
     <TouchableOpacity
-      style={{ flexDirection: "row", alignItems: "center", marginBottom: 15 }}
+      style={{ flexDirection: "row", alignItems: "center", marginBottom: 20 }}
     >
-      <Image source={require(`../my-app/assets/imgs/3.png`)} />
-      {/* <Text>{typeof item.id}</Text> */}
-      <View style={{ marginLeft: 18 }}>
-        <Text style={{ fontWeight: "600", fontSize: 16 }}>{item.name}</Text>
-        <Text style={{ fontWeight: "400", fontSize: 12 }}>{item.username}</Text>
-      </View>
+      <Text style={{ fontWeight: "600", fontSize: 16 }}>{item.title}</Text>
+      <Text>{item.id}</Text>
     </TouchableOpacity>
   );
 
   return (
     <View style={styles.container}>
-      {console.log(typeof users)}
-      <Text style={{ fontWeight: "700", fontSize: 32, marginBottom: 20 }}>
-        Friends
-      </Text>
+      <View
+        style={{ flexDirection: "row", alignItems: "center", marginBottom: 15 }}
+      >
+        <Image source={require(`../../assets/imgs/6.png`)} />
+        <View style={{ marginLeft: 18 }}>
+          <Text style={{ fontWeight: "600", fontSize: 16 }}>Ola</Text>
+          <Text style={{ fontWeight: "400", fontSize: 12 }}>amigo</Text>
+        </View>
+      </View>
       <FlatList
         data={users}
         renderItem={renderItem}

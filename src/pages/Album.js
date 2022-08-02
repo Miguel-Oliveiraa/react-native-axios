@@ -7,15 +7,17 @@ import {
   FlatList,
   TouchableOpacity,
   Image,
+  Dimensions,
 } from "react-native";
-import api from "./src/services/axios";
+import api from "../services/axios";
+const windowWidth = Dimensions.get("window").width;
 
-export default function App() {
+export default function Album() {
   const [users, setUser] = useState();
 
   useEffect(() => {
     api
-      .get("/users")
+      .get("/albums/1/photos")
       .then((response) => setUser(response.data))
       .catch((err) => {
         console.error("ops! ocorreu um erro" + err);
@@ -23,24 +25,20 @@ export default function App() {
   }, []);
 
   const renderItem = ({ item }) => (
-    <TouchableOpacity
-      style={{ flexDirection: "row", alignItems: "center", marginBottom: 15 }}
-    >
-      <Image source={require(`../my-app/assets/imgs/3.png`)} />
-      {/* <Text>{typeof item.id}</Text> */}
-      <View style={{ marginLeft: 18 }}>
-        <Text style={{ fontWeight: "600", fontSize: 16 }}>{item.name}</Text>
-        <Text style={{ fontWeight: "400", fontSize: 12 }}>{item.username}</Text>
-      </View>
-    </TouchableOpacity>
+    <View style={{ alignItems: "center", marginBottom: 20 }}>
+      <Image
+        style={{ width: windowWidth, height: windowWidth }}
+        source={{
+          uri: "https://engineering.fb.com/wp-content/uploads/2016/04/yearinreview.jpg",
+        }}
+      />
+      <Text style={{ fontWeight: "600", fontSize: 16 }}>{item.url}</Text>
+      <Text>{item.url}</Text>
+    </View>
   );
 
   return (
     <View style={styles.container}>
-      {console.log(typeof users)}
-      <Text style={{ fontWeight: "700", fontSize: 32, marginBottom: 20 }}>
-        Friends
-      </Text>
       <FlatList
         data={users}
         renderItem={renderItem}
@@ -56,6 +54,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     marginTop: 60,
-    marginLeft: 20,
+    // marginLeft: 20,
   },
 });
