@@ -7,45 +7,41 @@ import {
   FlatList,
   TouchableOpacity,
   Image,
-  Dimensions,
 } from "react-native";
 import api from "../services/axios";
-const windowWidth = Dimensions.get("window").width;
 
-export function Album({ route, navigation }) {
-  const { albumData } = route.params;
+export function HomeScreen({ navigation }) {
   const [users, setUser] = useState();
-  const [imageUrl, setImageUrl] = useState();
 
   useEffect(() => {
     api
-      .get(`/albums/${albumData.id}/photos`)
+      .get("/users")
       .then((response) => setUser(response.data))
       .catch((err) => {
         console.error("ops! ocorreu um erro" + err);
       });
   }, []);
-  useEffect(() => {
-    setImageUrl("https://via.placeholder.com/600/b29eb8.png");
-  }, []);
 
-  const renderItem = ({ item }) => {
-    return (
-      <View style={{ alignItems: "center", marginBottom: 20 }}>
-        <Image
-          style={{ width: windowWidth, height: windowWidth }}
-          source={{
-            uri: imageUrl,
-          }}
-        />
-        <Text style={{ fontWeight: "600", fontSize: 16 }}>{item.url}</Text>
-        <Text>{item.url}</Text>
+  const renderItem = ({ item }) => (
+    <TouchableOpacity
+      style={{ flexDirection: "row", alignItems: "center", marginBottom: 15 }}
+      onPress={() => navigation.navigate("Profile", { userData: item })}
+    >
+      <Image source={require(`../../assets/imgs/3.png`)} />
+      {/* <Text>{typeof item.id}</Text> */}
+      <View style={{ marginLeft: 18 }}>
+        <Text style={{ fontWeight: "600", fontSize: 16 }}>{item.name}</Text>
+        <Text style={{ fontWeight: "400", fontSize: 12 }}>{item.username}</Text>
       </View>
-    );
-  };
+    </TouchableOpacity>
+  );
 
   return (
     <View style={styles.container}>
+      {console.log(typeof users)}
+      <Text style={{ fontWeight: "700", fontSize: 32, marginBottom: 20 }}>
+        Friends
+      </Text>
       <FlatList
         data={users}
         renderItem={renderItem}
@@ -61,6 +57,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     paddingTop: 60,
-    // marginLeft: 20,
+    paddingLeft: 20,
   },
 });

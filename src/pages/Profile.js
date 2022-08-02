@@ -10,12 +10,13 @@ import {
 } from "react-native";
 import api from "../services/axios";
 
-export default function Profile() {
+export function Profile({ route, navigation }) {
+  const { userData } = route.params;
   const [users, setUser] = useState();
 
   useEffect(() => {
     api
-      .get("/users/1/albums")
+      .get(`/users/${userData.id}/albums`)
       .then((response) => setUser(response.data))
       .catch((err) => {
         console.error("ops! ocorreu um erro" + err);
@@ -25,6 +26,7 @@ export default function Profile() {
   const renderItem = ({ item }) => (
     <TouchableOpacity
       style={{ flexDirection: "row", alignItems: "center", marginBottom: 20 }}
+      onPress={() => navigation.navigate("Album", { albumData: item })}
     >
       <Text style={{ fontWeight: "600", fontSize: 16 }}>{item.title}</Text>
       <Text>{item.id}</Text>
@@ -38,8 +40,12 @@ export default function Profile() {
       >
         <Image source={require(`../../assets/imgs/6.png`)} />
         <View style={{ marginLeft: 18 }}>
-          <Text style={{ fontWeight: "600", fontSize: 16 }}>Ola</Text>
-          <Text style={{ fontWeight: "400", fontSize: 12 }}>amigo</Text>
+          <Text style={{ fontWeight: "600", fontSize: 16 }}>
+            {userData.name}
+          </Text>
+          <Text style={{ fontWeight: "400", fontSize: 12 }}>
+            {userData.username}
+          </Text>
         </View>
       </View>
       <FlatList
@@ -56,7 +62,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    marginTop: 60,
-    marginLeft: 20,
+    paddingTop: 60,
+    paddingLeft: 20,
   },
 });
