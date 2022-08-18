@@ -15,8 +15,11 @@ export function HomeScreen({ navigation }) {
 
   useEffect(() => {
     api
-      .get("/users")
-      .then((response) => setUser(response.data))
+      .get("/character")
+      .then((response) => {
+        setUser(response.data.results);
+        console.log(users);
+      })
       .catch((err) => {
         console.error("ops! ocorreu um erro" + err);
       });
@@ -27,18 +30,22 @@ export function HomeScreen({ navigation }) {
       style={{ flexDirection: "row", alignItems: "center", marginBottom: 15 }}
       onPress={() => navigation.navigate("Profile", { userData: item })}
     >
-      <Image source={require(`../../assets/imgs/3.png`)} />
+      <Image
+        style={{ width: 46, height: 46, borderRadius: 25 }}
+        source={{
+          uri: item.image,
+        }}
+      />
       {/* <Text>{typeof item.id}</Text> */}
       <View style={{ marginLeft: 18 }}>
         <Text style={{ fontWeight: "600", fontSize: 16 }}>{item.name}</Text>
-        <Text style={{ fontWeight: "400", fontSize: 12 }}>{item.username}</Text>
+        <Text style={{ fontWeight: "400", fontSize: 12 }}>{item.status}</Text>
       </View>
     </TouchableOpacity>
   );
 
   return (
     <View style={styles.container}>
-      {console.log(typeof users)}
       <Text style={{ fontWeight: "700", fontSize: 32, marginBottom: 20 }}>
         Friends
       </Text>

@@ -14,19 +14,19 @@ export function Profile({ route, navigation }) {
   const { userData } = route.params;
   const [users, setUser] = useState();
 
-  useEffect(() => {
-    api
-      .get(`/users/${userData.id}/albums`)
-      .then((response) => setUser(response.data))
-      .catch((err) => {
-        console.error("ops! ocorreu um erro" + err);
-      });
-  }, []);
+  // useEffect(() => {
+  //   api
+  //     .get(`/users/${userData.id}/albums`)
+  //     .then((response) => setUser(response.data))
+  //     .catch((err) => {
+  //       console.error("ops! ocorreu um erro" + err);
+  //     });
+  // }, []);
 
   const renderItem = ({ item }) => (
     <TouchableOpacity
       style={{ flexDirection: "row", alignItems: "center", marginBottom: 20 }}
-      onPress={() => navigation.navigate("Album", { albumData: item })}
+      // onPress={() => navigation.navigate("Album", { albumData: item })}
     >
       <Text style={{ fontWeight: "600", fontSize: 16 }}>{item.title}</Text>
       <Text>{item.id}</Text>
@@ -38,13 +38,16 @@ export function Profile({ route, navigation }) {
       <View
         style={{ flexDirection: "row", alignItems: "center", marginBottom: 15 }}
       >
-        <Image source={require(`../../assets/imgs/6.png`)} />
+        <Image
+          style={{ width: 46, height: 46, borderRadius: 25 }}
+          source={{ uri: userData.image }}
+        />
         <View style={{ marginLeft: 18 }}>
           <Text style={{ fontWeight: "600", fontSize: 16 }}>
             {userData.name}
           </Text>
           <Text style={{ fontWeight: "400", fontSize: 12 }}>
-            {userData.username}
+            {userData.status}
           </Text>
         </View>
       </View>
