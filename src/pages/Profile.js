@@ -14,22 +14,27 @@ export function Profile({ route, navigation }) {
   const { userData } = route.params;
   const [users, setUser] = useState();
 
-  // useEffect(() => {
-  //   api
-  //     .get(`/users/${userData.id}/albums`)
-  //     .then((response) => setUser(response.data))
-  //     .catch((err) => {
-  //       console.error("ops! ocorreu um erro" + err);
-  //     });
-  // }, []);
+  useEffect(() => {
+    let episodes = userData.episode;
+    for (let i = 0; i < episodes.length; i++) {
+      episodes[i] = episodes[i].split("/");
+      episodes[i] = episodes[i][episodes[i].length - 1];
+    }
+    api
+      .get(`/episode/${episodes}`)
+      .then((response) => setUser(response.data))
+      .catch((err) => {
+        console.error("ops! ocorreu um erro" + err);
+      });
+  }, []);
 
   const renderItem = ({ item }) => (
     <TouchableOpacity
       style={{ flexDirection: "row", alignItems: "center", marginBottom: 20 }}
       // onPress={() => navigation.navigate("Album", { albumData: item })}
     >
-      <Text style={{ fontWeight: "600", fontSize: 16 }}>{item.title}</Text>
-      <Text>{item.id}</Text>
+      <Text style={{ fontWeight: "600", fontSize: 16 }}>{item.name} - </Text>
+      <Text>{item.episode}</Text>
     </TouchableOpacity>
   );
 
@@ -55,6 +60,8 @@ export function Profile({ route, navigation }) {
         data={users}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
+        showsVerticalScrollIndicator={false}
+        overScrollMode={"never"}
       />
       <StatusBar style="auto" />
     </View>
