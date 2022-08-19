@@ -47,12 +47,14 @@ export function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <Text style={{ fontWeight: "700", fontSize: 32, marginBottom: 20 }}>
-        Friends
+        Personagens
       </Text>
       <FlatList
         data={users}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
+        showsVerticalScrollIndicator={false}
+        overScrollMode={"never"}
       />
       <StatusBar style="auto" />
     </View>
