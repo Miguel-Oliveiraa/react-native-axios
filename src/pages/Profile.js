@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   Image,
 } from "react-native";
-import api from "../services/axios";
+import getAllEpisodes from "../services/requests/getEpisodes";
 
 export function Profile({ route, navigation }) {
   const { userData } = route.params;
@@ -20,12 +20,11 @@ export function Profile({ route, navigation }) {
       episodes[i] = episodes[i].split("/");
       episodes[i] = episodes[i][episodes[i].length - 1];
     }
-    api
-      .get(`/episode/${episodes}`)
-      .then((response) => setUser(response.data))
-      .catch((err) => {
-        console.error("ops! ocorreu um erro" + err);
-      });
+    async function fetchData(episode) {
+      const response = await getAllEpisodes(episode);
+      setUser(response);
+    }
+    fetchData(episodes);
   }, []);
 
   const renderItem = ({ item }) => (

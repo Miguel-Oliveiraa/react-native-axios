@@ -8,21 +8,17 @@ import {
   TouchableOpacity,
   Image,
 } from "react-native";
-import api from "../services/axios";
+import getAllCharacters from "../services/requests/getCharacters";
 
 export function HomeScreen({ navigation }) {
   const [users, setUser] = useState();
 
   useEffect(() => {
-    api
-      .get("/character")
-      .then((response) => {
-        setUser(response.data.results);
-        console.log(users);
-      })
-      .catch((err) => {
-        console.error("ops! ocorreu um erro" + err);
-      });
+    async function fetchData() {
+      const response = await getAllCharacters();
+      setUser(response.results);
+    }
+    fetchData();
   }, []);
 
   const renderItem = ({ item }) => (
