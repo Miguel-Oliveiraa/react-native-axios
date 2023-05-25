@@ -1,5 +1,5 @@
 # react-native-axios
-Aplicativo em React-Native construído para exibir personagens de Rick and Morty consumindo a API The Rick and Morty.
+App em React-Native feito para mostrar informações de personagens de Rick e Morty consumindo "The Rick and Morty public API".
 
 ## Pré-requisitos
 
