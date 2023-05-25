@@ -1,54 +1,44 @@
-# multiversus
-App in React-Native built to show Rick and Morty characters consuming The Rick and Morty API.
+# react-native-axios
+Aplicativo em React-Native construído para exibir personagens de Rick and Morty consumindo a API The Rick and Morty.
 
-## 💻 Prerequisites
+## Pré-requisitos
 
-Before you start, have sure you have:
-<!---Estes são apenas requisitos de exemplo. Adicionar, duplicar ou remover conforme necessário--->
-* Installe the most recent version of mais recente de `<nodejs / jdk / yarn>`
-* You have a `<Windows / Linux / Mac>`.
-* You read this `<guide>`.
+Antes de começar, certifique-se de ter:
+* Instalado a versão mais recente de `<nodejs / jdk / yarn>`
+* Ter um `<Windows / Linux / Mac>`.
+* Ler este `<guia>`.
 
-## 🚀 Installing multiversus
+## Instalando o react-native-axios
 
-To install multiversus, Do:
+Para instalar o multiversus, faça:
 
-Windows, Linux and macOS:
-```
-$ git clone https://github.com/Miguel-Oliveiraa/multiversus.git
-or
-$ git clone git@github.com:Miguel-Oliveiraa/multiversus.git
-```
+Windows, Linux e macOS:
+$ git clone https://github.com/Miguel-Oliveiraa/react-native-axios.git
+ou
+$ git clone git@github.com:Miguel-Oliveiraa/react-native-axios.git
 
+## Usando o react-native-axios
 
-## ☕ Using multiversus
-
-To use multiversus, you must:
-Enter the directory
-```
-$ cd multiversus
-```
-install dependencies
-```
+Para usar o react-native-axios, você precisa:
+Acessar o diretório
+$ cd react-native-axios
+Instalar as dependências
 $ npm install
-or
+ou
 $ yarn
-```
-Run the expo app
-```
+Executar o aplicativo Expo
 $ npx expo start
-```
 
-## 📫 Contributing to multiversus
-<!---Se o seu README for longo ou se você tiver algum processo ou etapas específicas que deseja que os contribuidores sigam, considere a criação de um arquivo CONTRIBUTING.md separado--->
-To contribute to multiversus, follow theses steps:
+## Contribuindo para o react-native-axios
 
-1. Fork this repository.
-2. Create a new branch: `git checkout -b <branch_name>`.
-3. Make yours changes and commit: `git commit -m '<commit_message>'`
-4. Send to the original branch: `git push origin multiversus / <local>`
-5. Create a new pull request.
+Para contribuir com o react-native-axios, siga estes passos:
 
-Alternatively, see the GitHub documentation at [Creating a pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request).
+1. Faça um fork deste repositório.
+2. Crie um novo branch: `git checkout -b <nome_do_branch>`.
+3. Faça suas alterações e faça o commit: `git commit -m '<mensagem_do_commit>'`
+4. Envie para o branch original: `git push origin multiversus/<local>`
+5. Crie uma nova pull request.
 
-[⬆ Back to top](#multiversus)<br>
+Alternativamente, consulte a documentação do GitHub em [Criando uma pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request).
+
+[⬆ Voltar ao topo](#multiversus)
