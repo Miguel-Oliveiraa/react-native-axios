@@ -13,22 +13,29 @@ Antes de começar, certifique-se de ter:
 Para instalar o multiversus, faça:
 
 Windows, Linux e macOS:
+```
 $ git clone https://github.com/Miguel-Oliveiraa/react-native-axios.git
 ou
 $ git clone git@github.com:Miguel-Oliveiraa/react-native-axios.git
+```
 
 ## Usando o react-native-axios
 
 Para usar o react-native-axios, você precisa:
 Acessar o diretório
+```
 $ cd react-native-axios
+```
 Instalar as dependências
+```
 $ npm install
 ou
 $ yarn
+```
 Executar o aplicativo Expo
+```
 $ npx expo start
-
+```
 ## Contribuindo para o react-native-axios
 
 Para contribuir com o react-native-axios, siga estes passos:
